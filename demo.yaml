@@ -1,0 +1,13 @@
+---
+- name: Execute df -h command on all nodes
+  hosts: all
+  gather_facts: false  # Disable gathering facts if not required
+
+  tasks:
+    - name: Run df -h command
+      command: df -h
+      register: df_output  # Register the output of the command
+
+    - name: Display df -h output
+      debug:
+        msg: "{{ df_output.stdout_lines }}"
